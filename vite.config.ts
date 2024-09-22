@@ -17,6 +17,7 @@ export default defineConfig({
     port: 3000,
   },
   build: {
+    target: "node18",
     manifest: true,
     minify: true,
     reportCompressedSize: true,
@@ -26,7 +27,7 @@ export default defineConfig({
       fileName: (format) => `main.${format}.js`,
     },
     rollupOptions: {
-      external: [],
+      external: ["fs", "path", "url"],
       plugins: [
         typescriptPaths({
           preserveExtensions: true,
