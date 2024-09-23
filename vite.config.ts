@@ -22,9 +22,17 @@ export default defineConfig({
     minify: true,
     reportCompressedSize: true,
     lib: {
-      entry: "src/main.ts",
+      entry: {
+        main: "src/main.ts",
+        bin: "src/bin/index.ts",
+      },
       name: "main",
-      fileName: (format) => `main.${format}.js`,
+      fileName: (format, entryName) => {
+        if (entryName === "bin") {
+          return `bin/index.js`;
+        }
+        return `main.${format}.js`;
+      },
     },
     rollupOptions: {
       external: ["fs", "path", "url"],

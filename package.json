@@ -2,7 +2,7 @@
   "name": "nameless-npm-package",
   "private": true,
   "version": "0.0.0",
-  "main": "dist/main.umd.js",
+  "main": "dist/main.cjs.js",
   "module": "dist/main.es.js",
   "types": "dist/main.d.ts",
   "type": "module",
@@ -10,6 +10,9 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
+  },
+  "bin": {
+    "angel": "dist/bin/index.js"
   },
   "devDependencies": {
     "typescript": "^5.5.3",
