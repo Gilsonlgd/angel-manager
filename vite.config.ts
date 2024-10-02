@@ -33,9 +33,10 @@ export default defineConfig({
         }
         return `main.${format}.js`;
       },
+      formats: ["es"],
     },
     rollupOptions: {
-      external: ["fs", "path", "url"],
+      external: ["fs", "path", "url", "commander"],
       plugins: [
         typescriptPaths({
           preserveExtensions: true,
@@ -46,6 +47,9 @@ export default defineConfig({
           outDir: "dist",
         }),
       ],
+      output: {
+        format: "es",
+      },
     },
   },
 });
