@@ -4,22 +4,23 @@ import fs from "fs";
 
 const engine = new Liquid();
 
-export const processTemplate = (dirname: string): void => {
+export const processTemplate = (
+  commandClass: any,
+  dirname: string,
+  args: { [key: string]: string }
+): void => {
+  console.log(commandClass)
   const rootDir = "components";
   const templatePath = path.join(
     dirname,
     `architecture/${rootDir}/index.liquid`
   );
   const templateContent = fs.readFileSync(templatePath, "utf8");
-  const componentName = "MyComponent";
-
-  const data = {
-    componentName,
-  };
+  const componentName = args.componentName;
 
   fs.mkdirSync(`${dirname}/${rootDir}/${componentName}`, { recursive: true });
   engine
-    .parseAndRender(templateContent, data)
+    .parseAndRender(templateContent, args)
     .then((output) => {
       const outputPath = path.join(
         dirname,

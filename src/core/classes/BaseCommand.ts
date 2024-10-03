@@ -10,7 +10,7 @@ export default abstract class BaseCommand {
   public static destinationPath: string;
   public static extension: string;
 
-  public abstract run(): void;
+  public abstract run(args: { [key: string]: string }): void;
 
   public abstract args(): Arg[];
 }

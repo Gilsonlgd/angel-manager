@@ -8,6 +8,7 @@ import { fileURLToPath } from "url";
 
 import findProjectRoot from "src/utils/findProjectRoot";
 import { makeTmpDirectory, deleteTmpDirectory } from "src/utils/fsUtils";
+import { defineNewCommand } from "src/utils/commander";
 
 const filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(filename);
@@ -40,10 +41,12 @@ async function loadCommands() {
 
     const { default: CommandClass } = await import(jsFilePath);
     const command = new CommandClass();
-    console.log(command.args());
+    defineNewCommand(program, command, CommandClass);
     deleteTmpDirectory(__dirname);
   }
 }
 
-loadCommands();
-program.version("0.1.0").description("Angel Manager").parse(process.argv);
+(async () => {
+  await loadCommands();
+  program.parse(process.argv);
+})();
