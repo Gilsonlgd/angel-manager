@@ -1,7 +1,7 @@
 /**
  * Interfaces
  */
-import BaseCommand from "./classes/BaseCommand";
+import BaseCommand, { Arg } from "./classes/BaseCommand";
 
 
 /**
@@ -10,4 +10,4 @@ import BaseCommand from "./classes/BaseCommand";
 
 import { processTemplate } from "./functions/processTemplate";
 
-export { BaseCommand, processTemplate };
+export { BaseCommand, processTemplate, Arg };

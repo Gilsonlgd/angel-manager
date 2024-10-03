@@ -1,1 +1,1 @@
-export { BaseCommand, processTemplate } from "./core";
+export { BaseCommand, processTemplate, Arg } from "./core";
