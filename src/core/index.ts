@@ -3,11 +3,6 @@
  */
 import BaseCommand from "./classes/BaseCommand";
 
-/**
- * Decorators
- */
-
-import { args } from "./decorators/args";
 
 /**
  * Functions
@@ -15,4 +10,4 @@ import { args } from "./decorators/args";
 
 import { processTemplate } from "./functions/processTemplate";
 
-export { BaseCommand, args, processTemplate };
+export { BaseCommand, processTemplate };
