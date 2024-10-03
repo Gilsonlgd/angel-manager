@@ -36,7 +36,7 @@ export default defineConfig({
       formats: ["es"],
     },
     rollupOptions: {
-      external: ["fs", "path", "url", "commander"],
+      external: ["fs", "path", "url", "commander", "esbuild"],
       plugins: [
         typescriptPaths({
           preserveExtensions: true,
