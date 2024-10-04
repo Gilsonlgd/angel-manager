@@ -1,18 +1,16 @@
 #!/usr/bin/env node
+import fs from "fs";
+import path from "path";
 import { Command } from "commander";
 import { build } from "esbuild";
 
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
+import findProjectRoot from "@utils/findProjectRoot";
+import { makeTmpDirectory, deleteTmpDirectory } from "@utils/fsUtils";
+import { defineNewCommand } from "@utils/commander";
+import { __dirname } from "@utils/reactUtils";
 
-import findProjectRoot from "src/utils/findProjectRoot";
-import { makeTmpDirectory, deleteTmpDirectory } from "src/utils/fsUtils";
-import { defineNewCommand } from "src/utils/commander";
-import { BaseCommand } from "src/core";
+import { BaseCommand } from "@core/index"
 
-const filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(filename);
 const program = new Command();
 
 async function loadCommand<T extends BaseCommand>(
@@ -43,7 +41,7 @@ async function loadCommands() {
       platform: "node",
       format: "esm",
       sourcemap: false,
-      tsconfig: path.join(__dirname, "../../tsconfig.json"), // mudar para o ts do projeto
+      tsconfig: path.join(projectRoot, "tsconfig.json"), // mudar para o ts do projeto
       target: "ESNext",
     });
 

@@ -1,5 +1,5 @@
 import { Command } from "commander";
-import { BaseCommand, Arg } from "src/core";
+import { BaseCommand, Arg } from "@core";
 
 const generateArgsString = (args: Arg[]) => {
   return args.map((arg) => `<${arg.name}>`).join(" ");

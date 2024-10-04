@@ -1,8 +1,8 @@
 import { Liquid } from "liquidjs";
 import path from "path";
 import fs from "fs";
-import { BaseCommand, RunnableArgs } from "src/core";
-import { getObjectFirstProperty } from "src/utils/reactUtils";
+import { BaseCommand, RunnableArgs } from "@core";
+import { getObjectFirstProperty } from "@utils/reactUtils";
 
 const engine = new Liquid();
 
