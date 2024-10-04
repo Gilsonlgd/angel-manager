@@ -8,13 +8,11 @@ const generateArgsString = (args: Arg[]) => {
 export const defineNewCommand = (
   program: Command,
   command: BaseCommand,
-  commandClass: any
+  __dirname: string
 ): void => {
   program
-    .command(
-      `${commandClass.commandName} ${generateArgsString(command.args())}`
-    )
-    .description("Create a new item")
+    .command(`${command.commandName} ${generateArgsString(command.args())}`)
+    .description("Runs the specified command")
     .action(async (...args) => {
       const definedArgs = command.args();
 
@@ -29,6 +27,6 @@ export const defineNewCommand = (
         argsObject = { ...argsObject, [arg.name]: args[index] };
       });
 
-      command.run(argsObject);
+      command.run({ arguments: argsObject, __dirname });
     });
 };

@@ -1,8 +1,9 @@
 /**
  * Interfaces
  */
-import BaseCommand, { Arg } from "./classes/BaseCommand";
+import BaseCommand, { Arg, RunnableArgs } from "./classes/BaseCommand";
 
+export { BaseCommand, Arg, RunnableArgs };
 
 /**
  * Functions
@@ -10,4 +11,4 @@ import BaseCommand, { Arg } from "./classes/BaseCommand";
 
 import { processTemplate } from "./functions/processTemplate";
 
-export { BaseCommand, processTemplate, Arg };
+export { processTemplate };

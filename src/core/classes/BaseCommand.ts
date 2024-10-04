@@ -3,14 +3,20 @@ export type Arg = {
   type: string;
 };
 
-export default abstract class BaseCommand {
-  public static commandName: string;
-  public static description: string;
-  public static templatePath: string;
-  public static destinationPath: string;
-  public static extension: string;
+export type RunnableArgs = {
+  arguments: { [key: string]: string | number };
+  __dirname: string;
+};
 
-  public abstract run(args: { [key: string]: string }): void;
+export default abstract class BaseCommand {
+  public abstract commandName: string;
+  public abstract description: string;
+  public abstract templatePath?: string;
+  public abstract destinationPath?: string;
+  public abstract extension?: string;
+  public abstract subDir?: boolean;
+
+  public abstract run(args: RunnableArgs): void;
 
   public abstract args(): Arg[];
 }

@@ -1,30 +1,32 @@
 import { Liquid } from "liquidjs";
 import path from "path";
 import fs from "fs";
+import { BaseCommand, RunnableArgs } from "src/core";
+import { getObjectFirstProperty } from "src/utils/reactUtils";
 
 const engine = new Liquid();
 
 export const processTemplate = (
-  commandClass: any,
-  dirname: string,
-  args: { [key: string]: string }
+  command: BaseCommand,
+  args: RunnableArgs
 ): void => {
-  console.log(commandClass)
-  const rootDir = "components";
   const templatePath = path.join(
-    dirname,
-    `architecture/${rootDir}/index.liquid`
+    args.__dirname,
+    `src/scaffolding/architecture/${command.templatePath}/index.liquid`
   );
   const templateContent = fs.readFileSync(templatePath, "utf8");
-  const componentName = args.componentName;
+  const fileName =
+    getObjectFirstProperty(args.arguments) || command.commandName;
 
-  fs.mkdirSync(`${dirname}/${rootDir}/${componentName}`, { recursive: true });
+  fs.mkdirSync(`${args.__dirname}/src/${command.destinationPath}/${fileName}`, {
+    recursive: true,
+  });
   engine
-    .parseAndRender(templateContent, args)
+    .parseAndRender(templateContent, args.arguments)
     .then((output) => {
       const outputPath = path.join(
-        dirname,
-        `${rootDir}/${componentName}/${componentName}.tsx`
+        args.__dirname,
+        `src/${command.destinationPath}/${fileName}/${fileName}.${command.extension}`
       );
       fs.writeFileSync(outputPath, output);
       console.log("Arquivo .tsx gerado com sucesso!");

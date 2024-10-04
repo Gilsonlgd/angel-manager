@@ -1,7 +1,7 @@
 {
   "name": "nameless-npm-package",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "main": "dist/main.cjs.js",
   "module": "dist/main.es.js",
   "types": "dist/main.d.ts",
