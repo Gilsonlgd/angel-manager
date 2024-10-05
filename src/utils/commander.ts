@@ -12,7 +12,7 @@ export const defineNewCommand = (
 ): void => {
   program
     .command(`${command.commandName} ${generateArgsString(command.args())}`)
-    .description("Runs the specified command")
+    .description(command.description)
     .action(async (...args) => {
       const definedArgs = command.args();
 

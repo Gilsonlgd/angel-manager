@@ -1,9 +1,9 @@
 /**
  * Interfaces
  */
-export { BaseCommand, Arg, RunnableArgs } from "@core";
+export { BaseCommand, Arg, RunnableArgs } from "./core";
 
 /**
  * Methods
  */
-export { renderTemplate, includeRelated } from "@core";
+export { renderTemplate, includeRelated } from "./core";

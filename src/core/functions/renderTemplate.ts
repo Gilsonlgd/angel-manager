@@ -31,7 +31,7 @@ const renderTemplate = async (
           `src/${command.destinationPath}/${fileName}/${fileName}.${command.extension}`
         );
         fs.writeFileSync(outputPath, output);
-        console.log("Arquivo .tsx gerado com sucesso!");
+        console.log("Angel says: template rendered successfully");
       });
   } catch (err) {
     throw err;
