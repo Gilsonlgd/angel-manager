@@ -28,7 +28,7 @@ const renderTemplate = async (
       .then((output) => {
         const outputPath = path.join(
           args.__dirname,
-          `src/${command.destinationPath}/${fileName}/${fileName}.${command.extension}`
+          `src/${command.destinationPath}/${command.subDir ? fileName + "/" : ""}${fileName}.${command.extension}`
         );
         fs.writeFileSync(outputPath, output);
         console.log("Angel says: template rendered successfully");
