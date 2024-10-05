@@ -2,14 +2,25 @@ import { defineConfig } from "vite";
 import typescript from "@rollup/plugin-typescript";
 import path from "path";
 import { typescriptPaths } from "rollup-plugin-typescript-paths";
+import { viteStaticCopy } from "vite-plugin-static-copy";
 
 export default defineConfig({
-  plugins: [],
+  plugins: [
+    viteStaticCopy({
+      targets: [
+        {
+          src: "src/templates/command.liquid",
+          dest: "templates",
+        },
+      ],
+    }),
+  ],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
       "@core": path.resolve(__dirname, "src/core"),
       "@utils": path.resolve(__dirname, "src/utils"),
+      "@templates": path.resolve(__dirname, "src/templates"),
     },
   },
   server: {

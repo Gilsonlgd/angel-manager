@@ -1,0 +1,52 @@
+import { BaseCommand, Arg, RunnableArgs, renderTemplate } from 'angel-manager';
+
+export default class {{ plural.pascal.commandName }} extends BaseCommand {
+  /**
+   * Command name is used to run the command
+   */
+  public commandName = 'make:{{ kebab.commandName }}';
+
+  /**
+   * Description of the command
+   */
+  public description = 'Makes a new {{ camel.commandName }}';
+
+  /**
+   * Liquid template path
+   */
+  public templatePath = '{{ plural.kebab.commandName }}';
+
+  /**
+   * Processed template destination path
+   */
+  public destinationPath = '{{ plural.kebab.commandName }}';
+
+  /**
+   * The extension of the component
+   */
+  public extension = 'tsx';
+
+  /**
+   * If true, the template will be generated inside componentName directory
+   */
+  public subDir = false;
+
+  /**
+   *
+   * @returns an array of Arguments representing the arguments
+   * to be passed to the command in the order they are defined
+   */
+  public args(): Arg[] {
+    return [{ name: '{{ camel.commandName }}Name', type: 'string' }];
+  }
+
+  {% raw %}
+  public async run(args: RunnableArgs): Promise<void> {
+    try {
+      await renderTemplate(this, args);
+    } catch (error) {
+      console.error();
+    }
+  }
+  {% endraw %}
+}

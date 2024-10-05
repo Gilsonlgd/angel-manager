@@ -6,12 +6,14 @@ import { build } from "esbuild";
 
 import findProjectRoot from "@utils/findProjectRoot";
 import { makeTmpDirectory, deleteTmpDirectory } from "@utils/fsUtils";
-import { defineNewCommand } from "@utils/commander";
+import { buildDefaultCommands, defineNewCommand } from "@utils/commander";
 import { __dirname } from "@utils/reactUtils";
 
 import { BaseCommand } from "@core/index"
 
 const program = new Command();
+const processDir = process.cwd();
+const userRoot = findProjectRoot(processDir);
 
 async function loadCommand<T extends BaseCommand>(
   jsFilePath: string
@@ -21,9 +23,7 @@ async function loadCommand<T extends BaseCommand>(
 }
 
 async function loadCommands() {
-  const processDir = process.cwd();
-  const projectRoot = findProjectRoot(processDir);
-  const commandsPath = path.join(projectRoot, "src/scaffolding/commands");
+  const commandsPath = path.join(userRoot, "src/scaffolding/commands");
   const commandFiles = fs
     .readdirSync(commandsPath)
     .filter((file) => file.endsWith(".ts"));
@@ -41,17 +41,18 @@ async function loadCommands() {
       platform: "node",
       format: "esm",
       sourcemap: false,
-      tsconfig: path.join(projectRoot, "tsconfig.json"), // mudar para o ts do projeto
+      tsconfig: path.join(userRoot, "tsconfig.json"), // mudar para o ts do projeto
       target: "ESNext",
     });
 
     const command = await loadCommand<BaseCommand>(jsFilePath);
-    defineNewCommand(program, command, projectRoot);
+    defineNewCommand(program, command, userRoot);
   }
   deleteTmpDirectory(__dirname);
 }
 
 (async () => {
+  buildDefaultCommands(program, userRoot);
   await loadCommands();
   program.parse(process.argv);
 })();

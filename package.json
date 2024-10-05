@@ -15,15 +15,19 @@
     "angel": "dist/bin/index.js"
   },
   "devDependencies": {
+    "@types/pluralize": "^0.0.33",
     "typescript": "^5.5.3",
-    "vite": "^5.4.1"
+    "vite": "^5.4.1",
+    "vite-plugin-static-copy": "^1.0.6"
   },
   "dependencies": {
     "@rollup/plugin-typescript": "^11.1.6",
     "@types/node": "^22.5.5",
+    "change-case": "^5.4.4",
     "commander": "^12.1.0",
     "esbuild": "^0.24.0",
     "liquidjs": "^10.17.0",
+    "pluralize": "^8.0.0",
     "prettier": "^3.3.3",
     "rollup-plugin-typescript-paths": "^1.5.0",
     "tslib": "^2.7.0"
