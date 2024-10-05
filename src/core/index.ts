@@ -9,6 +9,7 @@ export { BaseCommand, Arg, RunnableArgs };
  * Functions
  */
 
-import { renderTemplate } from "./functions/renderTemplate";
+import renderTemplate from "./functions/renderTemplate";
+import includeRelated from "./functions/includeRelated";
 
-export { renderTemplate };
+export { renderTemplate, includeRelated };

@@ -6,7 +6,7 @@ import { getObjectFirstProperty } from "@utils/reactUtils";
 
 const engine = new Liquid();
 
-export const renderTemplate = async (
+const renderTemplate = async (
   command: BaseCommand,
   args: RunnableArgs
 ): Promise<void> => {
@@ -37,3 +37,5 @@ export const renderTemplate = async (
     throw err;
   }
 };
+
+export default renderTemplate;
