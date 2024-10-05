@@ -18,10 +18,13 @@ const renderTemplate = async (
   const fileName =
     getObjectFirstProperty(args.arguments.pascal) || command.commandName;
 
-  fs.mkdirSync(`${args.__dirname}/src/${command.destinationPath}/${fileName}`, {
-    recursive: true,
-  });
-
+  if (command.subDir)
+    fs.mkdirSync(
+      `${args.__dirname}/src/${command.destinationPath}/${fileName}`,
+      {
+        recursive: true,
+      }
+    );
   try {
     await engine
       .parseAndRender(templateContent, args.arguments)
