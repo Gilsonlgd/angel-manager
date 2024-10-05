@@ -62,11 +62,7 @@ export const defineNewCommand = (
         );
       }
 
-      let argsObject = {};
-      definedArgs.forEach((arg, index) => {
-        argsObject = { ...argsObject, [arg.name]: args[index] };
-      });
-
+      let argsObject = transformArgs(args, definedArgs);
       command.run({ arguments: argsObject, __dirname });
     });
 };

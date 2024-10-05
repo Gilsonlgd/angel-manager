@@ -10,7 +10,7 @@ const includeRelated = (
   files: string[]
 ): void => {
   const fileName =
-    getObjectFirstProperty(args.arguments) || command.commandName;
+    getObjectFirstProperty(args.arguments.pascal) || command.commandName;
 
   for (const ext of files) {
     const outputPath = path.join(

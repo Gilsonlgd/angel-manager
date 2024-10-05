@@ -1,10 +1,12 @@
+import { Arguments } from "@utils/templateArgs";
+
 export type Arg = {
   name: string;
   type: string;
 };
 
 export type RunnableArgs = {
-  arguments: { [key: string]: string | number };
+  arguments: Arguments;
   __dirname: string;
 };
 

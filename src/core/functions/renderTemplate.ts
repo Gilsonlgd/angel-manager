@@ -16,7 +16,7 @@ const renderTemplate = async (
   );
   const templateContent = fs.readFileSync(templatePath, "utf8");
   const fileName =
-    getObjectFirstProperty(args.arguments) || command.commandName;
+    getObjectFirstProperty(args.arguments.pascal) || command.commandName;
 
   fs.mkdirSync(`${args.__dirname}/src/${command.destinationPath}/${fileName}`, {
     recursive: true,

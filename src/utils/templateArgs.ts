@@ -1,6 +1,6 @@
 import { Arg } from "@core";
 
-export const argsObject: {
+export type Arguments = {
   base: Record<string, string | number>;
   camel: Record<string, string | number>;
   kebab: Record<string, string | number>;
@@ -12,7 +12,8 @@ export const argsObject: {
     snake: Record<string, string | number>;
     pascal: Record<string, string | number>;
   };
-} = {
+};
+export const argsObject: Arguments = {
   base: {},
   camel: {},
   kebab: {},
