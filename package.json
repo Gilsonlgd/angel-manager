@@ -1,6 +1,6 @@
 {
   "name": "angel-manager",
-  "private": true,
+  "private": false,
   "version": "0.1.0",
   "main": "dist/main.cjs.js",
   "module": "dist/main.es.js",
