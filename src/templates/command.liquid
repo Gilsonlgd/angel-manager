@@ -24,13 +24,19 @@ export default class {{ plural.pascal.commandName }} extends BaseCommand {
   /**
    * The extension of the component
    */
+{%- if model.staticAttributes.extension and model.staticAttributes.extension.defaultValue %}
+  public extension = '{{ model.staticAttributes.extension.defaultValue }}';
+{% else %}
   public extension = 'tsx';
-
+{% endif %}
   /**
    * If true, the template will be generated inside componentName directory
    */
+{%- if model.staticAttributes.subDir and model.staticAttributes.subDir.defaultValue %}
+  public subDir = {{ model.staticAttributes.subDir.defaultValue }};
+{% else %}
   public subDir = false;
-
+{% endif %}
   /**
    *
    * @returns an array of Arguments representing the arguments
@@ -39,8 +45,7 @@ export default class {{ plural.pascal.commandName }} extends BaseCommand {
   public args(): Arg[] {
     return [{ name: '{{ camel.commandName }}Name', type: 'string' }];
   }
-
-  {% raw %}
+{% raw %}
   public async run(args: RunnableArgs): Promise<void> {
     try {
       await renderTemplate(this, args);
@@ -48,5 +53,5 @@ export default class {{ plural.pascal.commandName }} extends BaseCommand {
       console.error();
     }
   }
-  {% endraw %}
+{% endraw -%}
 }

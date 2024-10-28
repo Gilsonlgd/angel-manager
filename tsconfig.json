@@ -27,7 +27,8 @@
       "@core": ["core/index.ts"],
       "@core/*": ["core/*"],
       "@utils/*": ["utils/*"],
-      "@templates/*": ["templates/*"]
+      "@templates/*": ["templates/*"],
+      "@types/*": ["types/*"]
     }
   }
 }

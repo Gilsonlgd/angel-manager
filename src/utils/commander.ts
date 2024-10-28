@@ -10,6 +10,7 @@ import pluralize from "pluralize";
 import { BaseCommand, Arg } from "@core";
 import { generateArgsString, argsObject } from "./templateArgs";
 import { __dirname } from "./reactUtils";
+import { getConfigFile } from "./fsUtils";
 
 export const transformArgs = (
   args: string[],
@@ -83,13 +84,18 @@ export const buildDefaultCommands = (
       const templateArgs = transformArgs(args, [
         { name: "commandName", type: "string" },
       ]);
+      const configData = await getConfigFile();
+
       try {
         await engine
-          .parseAndRender(templateContent, templateArgs)
+          .parseAndRender(templateContent, {
+            ...templateArgs,
+            model: { ...configData },
+          })
           .then((output) => {
             const outputPath = path.join(
               userRoot,
-              `src/scaffolding/commands/${templateArgs.pascal.commandName}.ts`
+              `src/scaffolding/commands/${templateArgs.plural.pascal.commandName}.ts`
             );
             fs.writeFileSync(outputPath, output);
             console.log("Command created successfully!");

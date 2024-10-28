@@ -21,6 +21,7 @@ export default defineConfig({
       "@core": path.resolve(__dirname, "src/core"),
       "@utils": path.resolve(__dirname, "src/utils"),
       "@templates": path.resolve(__dirname, "src/templates"),
+      "@types": path.resolve(__dirname, "src/types"),
     },
   },
   server: {
