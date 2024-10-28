@@ -17,7 +17,7 @@ const findProjectRoot = (startDir: string): string => {
     currentDir = path.dirname(currentDir);
   }
 
-  throw new Error("Angel says: package.json not found. Not a Node.js project.");
+  throw new Error("Angel Manager: package.json not found. Not a Node.js project.");
 };
 
 export default findProjectRoot;

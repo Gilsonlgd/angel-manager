@@ -34,7 +34,7 @@ const renderTemplate = async (
           `src/${command.destinationPath}/${command.subDir ? fileName + "/" : ""}${fileName}.${command.extension}`
         );
         fs.writeFileSync(outputPath, output);
-        console.log("Angel says: template rendered successfully");
+        console.log("Template rendered successfully");
       });
   } catch (err) {
     throw err;

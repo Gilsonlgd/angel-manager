@@ -92,7 +92,7 @@ export const buildDefaultCommands = (
               `src/scaffolding/commands/${templateArgs.pascal.commandName}.ts`
             );
             fs.writeFileSync(outputPath, output);
-            console.log("Angel says: command created successfully");
+            console.log("Command created successfully!");
           });
       } catch (err) {
         throw err;
