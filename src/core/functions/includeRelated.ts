@@ -15,7 +15,7 @@ const includeRelated = (
   for (const ext of files) {
     const outputPath = path.join(
       args.__dirname,
-      `src/${command.destinationPath}/${fileName}/${fileName}.${ext}`
+      `src/${command.destinationPath}/${command.subDir ? fileName + "/" : ""}${fileName}.${ext}`
     );
 
     fs.writeFileSync(outputPath, "");
