@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import fs from "fs";
 import path from "path";
+import { pathToFileURL } from "url";
 import { Command } from "commander";
 import { build } from "esbuild";
 
@@ -9,7 +10,7 @@ import { makeTmpDirectory, deleteTmpDirectory } from "@utils/fsUtils";
 import { buildDefaultCommands, defineNewCommand } from "@utils/commander";
 import { __dirname } from "@utils/reactUtils";
 
-import { BaseCommand } from "@core/index"
+import { BaseCommand } from "@core/index";
 
 const program = new Command();
 const processDir = process.cwd();
@@ -44,8 +45,9 @@ async function loadCommands() {
       tsconfig: path.join(userRoot, "tsconfig.json"), // mudar para o ts do projeto
       target: "ESNext",
     });
-
-    const command = await loadCommand<BaseCommand>(jsFilePath);
+    const command = await loadCommand<BaseCommand>(
+      pathToFileURL(jsFilePath).href
+    );
     defineNewCommand(program, command, userRoot);
   }
   deleteTmpDirectory(__dirname);
