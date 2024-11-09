@@ -25,6 +25,10 @@ async function loadCommand<T extends BaseCommand>(
 
 async function loadCommands() {
   const commandsPath = path.join(userRoot, "src/scaffolding/commands");
+  if (!fs.existsSync(commandsPath)) {
+    return;
+  }
+
   const commandFiles = fs
     .readdirSync(commandsPath)
     .filter((file) => file.endsWith(".ts"));

@@ -68,6 +68,49 @@ export const defineNewCommand = (
     });
 };
 
+function createScaffoldingDirectories(userRoot: string): void {
+  const directories = [
+    path.join(userRoot, "src/scaffolding"),
+    path.join(userRoot, "src/scaffolding/architecture"),
+    path.join(userRoot, "src/scaffolding/commands"),
+  ];
+
+  directories.forEach((dir) => {
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+  });
+  console.log("Scaffolding directory initialized successfully!");
+}
+
+function replicateDirectoryStructure(
+  sourceDir: string,
+  targetDir: string
+): void {
+  if (!fs.existsSync(sourceDir)) {
+    return;
+  }
+
+  if (!fs.existsSync(targetDir)) {
+    fs.mkdirSync(targetDir, { recursive: true });
+  }
+
+  const items = fs.readdirSync(sourceDir);
+
+  items.forEach((item) => {
+    const sourcePath = path.join(sourceDir, item);
+    const targetPath = path.join(targetDir, item);
+
+    if (fs.statSync(sourcePath).isDirectory()) {
+      if (!fs.existsSync(targetPath)) {
+        fs.mkdirSync(targetPath, { recursive: true });
+      }
+
+      replicateDirectoryStructure(sourcePath, targetPath);
+    }
+  });
+}
+
 export const buildDefaultCommands = (
   program: Command,
   userRoot: string
@@ -75,6 +118,31 @@ export const buildDefaultCommands = (
   const engine = new Liquid();
   const templatePath = path.join(__dirname, "templates/command.liquid");
   const templateContent = fs.readFileSync(templatePath, "utf8");
+
+  /* Initialize the scaffolding directory */
+  program
+    .command("init")
+    .description("Initializes the required directories")
+    .action(() => {
+      createScaffoldingDirectories(userRoot);
+    });
+
+  /* Applies the scaffolding/architecture directory structure */
+  program
+    .command("apply")
+    .description("Applies the modeled architecture")
+    .action(() => {
+      const sourceDir = path.join(
+        userRoot,
+        "src",
+        "scaffolding",
+        "architecture"
+      );
+
+      const targetDir = path.join(userRoot, "src");
+      replicateDirectoryStructure(sourceDir, targetDir);
+      console.log("Modeled architecture applied successfully!");
+    });
 
   /* Create Commands */
   program
