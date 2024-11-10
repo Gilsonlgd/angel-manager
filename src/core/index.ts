@@ -1,9 +1,9 @@
 /**
  * Interfaces
  */
-import BaseCommand, { Arg, RunnableArgs } from "./classes/BaseCommand";
+import BaseCommand, { Arg, RunnableArgs, FileConfig } from "./classes/BaseCommand";
 
-export { BaseCommand, Arg, RunnableArgs };
+export { BaseCommand, Arg, RunnableArgs, FileConfig };
 
 /**
  * Functions

@@ -1,4 +1,10 @@
-import { BaseCommand, Arg, RunnableArgs, renderTemplate } from 'angel-manager';
+import {
+  BaseCommand,
+  FileConfig,
+  Arg,
+  RunnableArgs,
+  renderTemplate,
+} from 'angel-manager';
 
 export default class {{ plural.pascal.commandName }} extends BaseCommand {
   /**
@@ -21,22 +27,23 @@ export default class {{ plural.pascal.commandName }} extends BaseCommand {
    */
   public destinationPath = '{{ plural.kebab.commandName }}';
 
-  /**
-   * The extension of the component
-   */
+  public file: FileConfig = {
+    // The name of the generated file
+    name: { argName: '{{ camel.commandName }}Name', case: 'pascal' },
+    // The extension of the generated file
 {%- if model.staticAttributes.extension and model.staticAttributes.extension.defaultValue %}
-  public extension = '{{ model.staticAttributes.extension.defaultValue }}';
-{% else %}
-  public extension = 'tsx';
-{% endif %}
-  /**
-   * If true, the template will be generated inside componentName directory
-   */
+    extension: '{{ model.staticAttributes.extension.defaultValue }}',
+{%- else %}
+    extension: 'tsx',
+{%- endif %}
+    // If true, the code will be generated inside a directory named after the file.
 {%- if model.staticAttributes.subDir and model.staticAttributes.subDir.defaultValue %}
-  public subDir = {{ model.staticAttributes.subDir.defaultValue }};
-{% else %}
-  public subDir = false;
-{% endif %}
+    subDir: {{ model.staticAttributes.subDir.defaultValue }},
+{%- else %}
+    subDir: false,
+{%- endif %}
+  };
+
   /**
    *
    * @returns an array of Arguments representing the arguments
