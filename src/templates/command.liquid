@@ -57,7 +57,7 @@ export default class {{ plural.pascal.commandName }} extends BaseCommand {
     try {
       await renderTemplate(this, args);
     } catch (error) {
-      console.error();
+      console.error(error);
     }
   }
 {% endraw -%}
