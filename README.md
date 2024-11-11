@@ -1,26 +1,29 @@
-# Angel Manager
+<p align="center">
+  <img src="angel-manager.webp" alt="Angel Manager" width="300">
+</p>
 
-**Angel Manager** é um gerenciador de arquitetura baseado em templates via CLI para **Node.js**. Totalmente **customizável** e **independente de framework**, esta ferramenta facilita a implementação e manutenção de arquiteturas de software web, automatizando a geração de código e padronizando convenções tanto no frontend quanto no backend. Ideal para desenvolvedores que buscam modularizar e otimizar seu fluxo de trabalho em Node.js, o Angel Manager permite a adaptação a diferentes necessidades de projeto, sem depender de um framework específico.
+<h1 align="center">Angel Manager</h1>
+
+**Angel Manager** é um gerenciador de arquitetura baseado em templates via CLI para **Node.js**. Totalmente **customizável** e **independente de framework**, esta ferramenta facilita a implementação e manutenção de arquiteturas de software web, automatizando a geração de código e padronizando convenções tanto no frontend quanto no backend. Ideal para desenvolvedores que buscam modularizar e otimizar seu fluxo de trabalho em Node.js a partir de modelagem e geração de código.
 
 
 ## Índice
-- [Angel Manager](#angel-manager)
-  - [Índice](#índice)
-  - [Instalação](#instalação)
-  - [Configuração](#configuração)
-  - [Uso](#uso)
-  - [Reutilização](#reutilização)
-  - [Diretório scaffolding](#diretório-scaffolding)
-  - [Criando um novo módulo](#criando-um-novo-módulo)
-  - [Construindo um Template](#construindo-um-template)
-    - [Exemplo de Template](#exemplo-de-template)
-  - [Construção do Design-Time Input](#construção-do-design-time-input)
-    - [Tabela de Tipos](#tabela-de-tipos)
-    - [Método `run`](#método-run)
-      - [Método `renderTemplate`](#método-rendertemplate)
-      - [Método `includeRelated`](#método-includerelated)
-  - [angel-managerrc.json](#angel-managerrcjson)
-  - [Contribuições](#contribuições)
+- [Índice](#índice)
+- [Instalação](#instalação)
+- [Configuração](#configuração)
+- [Uso](#uso)
+- [Reutilização](#reutilização)
+- [Diretório scaffolding](#diretório-scaffolding)
+- [Criando um novo módulo](#criando-um-novo-módulo)
+- [Construindo um Template](#construindo-um-template)
+  - [Exemplo de Template](#exemplo-de-template)
+- [Construção do Design-Time Input](#construção-do-design-time-input)
+  - [Tabela de Tipos](#tabela-de-tipos)
+  - [Método `run`](#método-run)
+    - [Método `renderTemplate`](#método-rendertemplate)
+    - [Método `includeRelated`](#método-includerelated)
+- [angel-managerrc.json](#angel-managerrcjson)
+- [Contribuições](#contribuições)
 
 ---
 
@@ -39,13 +42,13 @@ yarn add -D angel-manager
 ```
 
 ## Configuração
-Após a instalação, inicie a estrutura básica para configuração do Angel Manager:
+Após a instalação, a utilização da CLI (Linha de Comando) estará disponível através de ```npx angel```. Inicie a estrutura básica para configuração do Angel Manager:
 
 ```bash
 npx angel init
 ```
 
-Este comando criará a estrutura de diretórios necessária dentro do diretório src/scaffolding, que inclui os subdiretórios architecture e commands para definir templates e comandos customizados.
+Este comando criará a estrutura de diretórios necessária dentro do diretório src/scaffolding, que inclui os subdiretórios ```architecture``` e ```commands``` para definir templates e comandos customizados.
 
 ## Uso
 Para listar todos os comandos disponíveis, use:
@@ -86,8 +89,8 @@ src/
 ## Diretório scaffolding
 O diretório **scaffolding** é onde se define o modelo da arquitetura do projeto. Ele contém dois subdiretórios principais:
 
-- ```/architecture```: Este subdiretório armazena os templates que representam a estrutura modular da arquitetura. Deve refletir a organização de diretórios desejada para o projeto, oferecendo uma visão simplificada da estrutura do sistema. Cada módulo **(como components ou views)** terá seu próprio template, permitindo uma geração consistente e organizada de código.
-- ```/commands```: Contém arquivos TypeScript que configuram as transformações dos templates. Cada modelo na arquitetura deve ter um arquivo correspondente em commands para definir as regras de geração e transformação de código. Esses arquivos também servem para mapear os comandos disponíveis na CLI, permitindo que o Angel Manager identifique e execute comandos de geração para cada template.
+- ```/architecture```: Este subdiretório armazena os templates que representam a estrutura modular da arquitetura. Deve refletir a organização de diretórios desejada para o projeto. Cada módulo **(como components ou views)** terá seu próprio template.
+- ```/commands```: Contém arquivos **TypeScript** que configuram as transformações dos templates. Cada modelo na arquitetura deve ter um arquivo correspondente em ```commands``` para definir as regras de geração e transformação de código. Esses arquivos também servem para mapear os comandos disponíveis na CLI, permitindo que o Angel Manager identifique e execute comandos de geração para cada template.
 
 Por exemplo:
 ```bash
@@ -108,7 +111,7 @@ src/
 ## Criando um novo módulo
 Ao criar um novo módulo, comece construindo o template e armazene-o no diretório correspondente dentro de scaffolding/architecture.
 
-Em seguida, crie um novo arquivo no diretório commands, correspondente ao módulo que está sendo modelado. Para isso, o Angel Manager fornece um comando para inicializar o arquivo .ts, recebendo como argumento o nome do módulo:
+Em seguida, crie um novo arquivo no diretório commands, correspondente ao módulo que está sendo modelado. Para isso, o Angel Manager fornece um comando para inicializar a estrutura base do arquivo ```.ts```, recebendo como argumento o nome do módulo:
 
 ```bash
 npx angel create:command <commandName>
@@ -156,7 +159,7 @@ export default {{ pascal.componentName }};
 
 ## Construção do Design-Time Input
 
-Ao arquivo de configuração do modelo, definido dentro de /commands chamamos **design-time input**. Durante a construção deste, os desenvolvedores podem personalizar a geração de código de acordo com as necessidades do projeto.
+Ao arquivo de **configuração do modelo**, definido dentro de ```/commands``` chamamos **design-time input**. Durante a construção deste, os desenvolvedores podem personalizar a geração de código de acordo com as necessidades do projeto.
 
 O exemplo a seguir mostra a implementação de um comando que gera um novo componente:
 
@@ -225,22 +228,20 @@ export default class Components extends BaseCommand {
 | -------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Arg**        | `name`      | O nome do argumento que será solicitado pela linha de comando. Esse valor é utilizado para referenciar o parâmetro no código.                                                                            |
 |                | `type`      | O tipo do argumento. Pode ser "number" ou "string", indicando o tipo de dado que será esperado do usuário.                                                                                               |
-| **FileConfig** | `name`      | Define o nome do arquivo gerado. Pode ser uma string ou um objeto que utiliza um argumento e o formato de case (camel, kebab, snake, pascal). Também pode incluir a opção `plural` para transformar o valor no plural. |
+| **FileConfig** | `name`      | Define o nome do arquivo gerado. Pode ser uma string estática ou um objeto que utiliza um dos argumentos solicitados pela CLI e o formato de case (camel, kebab, snake, pascal) desejado. Também pode incluir a opção `plural` para transformar o valor no plural. |
 |                | `extension` | Define a extensão do arquivo gerado (por exemplo, `.tsx`).                                                                                                                                               |
 |                | `subDir`    | Se verdadeiro, o código será gerado dentro de um diretório com o mesmo nome do arquivo gerado.                                                                                                           |
 
 ### Método `run`
 
-O método `run` é um método assíncrono que executa a lógica do comando. Ele recebe como argumento `args`, que são os parâmetros passados pelo usuário ao executar o comando. Dentro do método, o desenvolvedor tem a liberdade de definir a lógica de execução do comando da maneira que for necessária para o seu caso de uso.
+O método `run` é um método abstrato e assíncrono que executa a lógica do comando. Ele disponibiliza como argumento `args`, que são os parâmetros passados pelo usuário ao executar o comando. Dentro do método, o desenvolvedor tem a liberdade de definir a lógica de execução do comando da maneira que for necessária para o seu caso de uso.
 
-No exemplo fornecido, a principal responsabilidade do método `run` é chamar a função `renderTemplate` e passar a si mesmo (`this`) e os argumentos (`args`) como parâmetros. A função `renderTemplate` será responsável por processar o template Liquid, substituindo os placeholders pelas variáveis definidas nos argumentos, e gerar o código de saída. O método `run` também inclui um bloco `try-catch` para capturar e tratar erros que possam ocorrer durante o processo de execução.
-
-Esse padrão permite que os desenvolvedores personalizem e estendam a lógica de execução conforme necessário, tornando o **Angel Manager** flexível para diferentes tipos de comandos e fluxos de trabalho.
+No exemplo fornecido, a principal responsabilidade do método `run` é chamar a função `renderTemplate` e passar a si mesmo (`this`) e os argumentos (`args`) como parâmetros. A função `renderTemplate`, disponibilizada pelo **Angel Manager** será responsável por processar o template Liquid, substituindo os placeholders pelas variáveis definidas nos argumentos, e gerar o código de saída. O método `run` também inclui um bloco `try-catch` para capturar e tratar erros que possam ocorrer durante o processo de execução.
 
 
 #### Método `renderTemplate`
 
-O método assíncrono `renderTemplate`, disponibilizado pelo Angel Manager, é responsável por processar o template através da engine, utilizando os argumentos recebidos e os atributos estáticos. Ele gera o código de saída com base no template Liquid e nas configurações definidas.
+O método assíncrono `renderTemplate`, disponibilizado pelo **Angel Manager**, é responsável por processar o template através da engine, utilizando os argumentos recebidos e os atributos estáticos. Ele gera o código de saída com base no template Liquid e nas configurações definidas.
 
 
 | Argumento | Tipo           | Descrição                                                                                                                                                           |
@@ -250,7 +251,7 @@ O método assíncrono `renderTemplate`, disponibilizado pelo Angel Manager, é r
 
 #### Método `includeRelated`
 
-O método síncrono `includeRelated`, disponibilizado pelo Angel Manager, permite a inclusão de arquivos vazios relacionados ao código gerado. Este método é útil quando é necessário criar arquivos complementares, como arquivos de estilo ou testes, no mesmo diretório do código gerado.
+O método síncrono `includeRelated`, disponibilizado pelo **Angel Manager**, permite a inclusão de arquivos vazios relacionados ao código gerado. Este método é útil quando é necessário criar arquivos complementares, como arquivos de estilo ou testes, no mesmo diretório do código gerado.
 
 
 | Argumento | Tipo           | Descrição                                                                                                                                                                                                         |
