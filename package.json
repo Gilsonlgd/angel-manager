@@ -6,6 +6,41 @@
   "module": "dist/main.es.js",
   "types": "dist/main.d.ts",
   "type": "module",
+  "author": "Gilson Garcia",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gilsonlgd/angel-manager.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Gilsonlgd/angel-manager/issues"
+  },
+  "homepage": "https://github.com/Gilsonlgd/angel-manager#readme",
+  "keywords": [
+    "scaffolding",
+    "architecture management",
+    "template-based code generation",
+    "code-generation",
+    "frontend-scaffolding",
+    "backend-scaffolding",
+    "architecture-modeling",
+    "architecture",
+    "template",
+    "template-based-code-generation",
+    "scaffolding",
+    "cli",
+    "nodejs",
+    "architecture-management",
+    "boilerplate",
+    "code-generator",
+    "automation",
+    "productivity",
+    "frontend",
+    "backend",
+    "development-tools",
+    "web-development",
+    "typescript"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
