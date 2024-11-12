@@ -1,0 +1,21 @@
+import { Navigate } from 'react-router-dom';
+
+import Home from '@views/{{ camel.routerName }}/Home/Home';
+
+const {{ camel.routerName }}Routes = [
+  { path: '', element: <Navigate to="{{ camel.routerName }}/home" /> },
+  { path: 'home', element: <Home /> },
+];
+
+export default {{ camel.routerName }}Routes;
+
+/**
+ * @note
+ * Não esqueça de importar {{ camel.routerName }}Routes em src/router.tsx
+ * Após importar, inclua o objeto abaixo na listagem de rotas:
+ * {
+ *   path: '/{{ kebab.routerName }}',
+ *   element: <{{ pascal.routerName }}Layout />,
+ *   children: {{ camel.routerName }}Routes,
+ * }
+ */

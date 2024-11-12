@@ -1,0 +1,27 @@
+import './{{ pascal.componentName }}.css';
+
+interface {{ pascal.componentName }}Props {
+  /* The props of the component */
+  requiredProp: string;
+  optionalProp?: string;
+}
+
+function {{ pascal.componentName }}({
+  requiredProp,
+  optionalProp = 'Default Value',
+}: {{ pascal.componentName }}Props): JSX.Element {
+  return (
+    <div className="{{ kebab.componentName }}">
+      Your html here: {requiredProp}, {optionalProp}
+    </div>
+  );
+}
+
+export default {{ pascal.componentName }};
+
+/**
+ * @note
+ * Insira a linha abaixo em src/components/index.ts:
+ * export { default as {{ pascal.componentName }} } from "./{{ pascal.componentName }}/{{ pascal.componentName }}"
+ */
+
