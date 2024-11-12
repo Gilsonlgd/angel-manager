@@ -4,70 +4,71 @@
 
 <h1 align="center">Angel Manager</h1>
 
-**Angel Manager** é um gerenciador de arquitetura baseado em templates via CLI para **Node.js**. Totalmente **customizável** e **independente de framework**, esta ferramenta facilita a implementação e manutenção de arquiteturas de software web, automatizando a geração de código e padronizando convenções tanto no frontend quanto no backend. Ideal para desenvolvedores que buscam modularizar e otimizar seu fluxo de trabalho em Node.js a partir de modelagem e geração de código.
+**Angel Manager** is a CLI-based, template-driven architecture manager for **Node.js**. Completely **customizable** and **framework-independent**, this tool simplifies the implementation and maintenance of web software architectures by automating code generation and standardizing conventions across both frontend and backend. Ideal for developers seeking to modularize and streamline their Node.js workflow through modeling and code generation.
 
-
-## Índice
-- [Índice](#índice)
-- [Instalação](#instalação)
-- [Configuração](#configuração)
-- [Uso](#uso)
-- [Reutilização](#reutilização)
-- [Diretório scaffolding](#diretório-scaffolding)
-- [Criando um novo módulo](#criando-um-novo-módulo)
-- [Construindo um Template](#construindo-um-template)
-  - [Exemplo de Template](#exemplo-de-template)
-- [Construção do Design-Time Input](#construção-do-design-time-input)
-  - [Tabela de Tipos](#tabela-de-tipos)
-  - [Método `run`](#método-run)
-    - [Método `renderTemplate`](#método-rendertemplate)
-    - [Método `includeRelated`](#método-includerelated)
+## Table of Contents
+- [Table of Contents](#table-of-contents)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Usage](#usage)
+- [Reuse](#reuse)
+- [Scaffolding Directory](#scaffolding-directory)
+- [Creating a New Module](#creating-a-new-module)
+- [Building a Template](#building-a-template)
+- [Template Example](#template-example)
+- [Design-Time Input Construction](#design-time-input-construction)
+  - [Type Table](#type-table)
+  - [`run` Method](#run-method)
+    - [`renderTemplate` Method](#rendertemplate-method)
+    - [`includeRelated` Method](#includerelated-method)
 - [angel-managerrc.json](#angel-managerrcjson)
-- [Contribuições](#contribuições)
+- [Contributions](#contributions)
 
 ---
 
-## Instalação
+## Installation
 
-Instale o Angel Manager como uma dependência de desenvolvimento no seu projeto:
+Install Angel Manager as a development dependency in your project:
 
 ```bash
 npm install angel-manager --save-dev
 ```
 
-ou 
+or
 
 ```bash
 yarn add -D angel-manager
 ```
 
-## Configuração
-Após a instalação, a utilização da CLI (Linha de Comando) estará disponível através de ```npx angel```. Inicie a estrutura básica para configuração do Angel Manager:
+## Configuration
+After installation, the CLI will be available via npx angel. Initialize the basic structure for configuring Angel Manager:
 
 ```bash
 npx angel init
 ```
 
-Este comando criará a estrutura de diretórios necessária dentro do diretório src/scaffolding, que inclui os subdiretórios ```architecture``` e ```commands``` para definir templates e comandos customizados.
+This command will create the required directory structure within the src/scaffolding directory, which includes the ```architecture``` and ```commands``` subdirectories to define templates and custom commands.
 
-## Uso
-Para listar todos os comandos disponíveis, use:
+## Usage
+To list all available commands, use:
 
 ```bash
 npx angel -h
 ```
 
-## Reutilização
-Se você já criou um modelo de arquitetura em outro projeto, pode reutilizá-lo facilmente. Para isso, copie o diretório scaffolding do projeto anterior e cole-o no novo projeto.
+## Reuse
+If you have created an architecture model in another project, you can easily reuse it. Copy the scaffolding directory from the previous project and paste it into the new project.
 
-Em seguida, utilize o comando:
+Then, use the following command:
+
 ```bash
 npx angel apply
 ```
 
-Esse comando aplica a estrutura de diretórios modelada em scaffolding/architecture, inicializando automaticamente os diretórios no novo projeto. Dessa forma, você evita configurar manualmente a arquitetura para cada projeto.
+This command applies the directory structure modeled in scaffolding/architecture, automatically initializing the directories in the new project. This avoids manually configuring the architecture for each project.
 
-Por exemplo, a estrutura modelada:
+For example, the modeled structure:
+
 ```bash
 scaffolding/
 └── architecture/
@@ -77,7 +78,8 @@ scaffolding/
         └── public/
 ```
 
-Deve gerar:
+Should generate:
+
 ```bash
 src/
 └── components/
@@ -86,61 +88,74 @@ src/
     └── public/
 ```
 
-## Diretório scaffolding
-O diretório **scaffolding** é onde se define o modelo da arquitetura do projeto. Ele contém dois subdiretórios principais:
+## Scaffolding Directory
+The **scaffolding** directory is where the project's architecture model is defined. It contains two main subdirectories:
 
-- ```/architecture```: Este subdiretório armazena os templates que representam a estrutura modular da arquitetura. Deve refletir a organização de diretórios desejada para o projeto. Cada módulo **(como components ou views)** terá seu próprio template.
-- ```/commands```: Contém arquivos **TypeScript** que configuram as transformações dos templates. Cada modelo na arquitetura deve ter um arquivo correspondente em ```commands``` para definir as regras de geração e transformação de código. Esses arquivos também servem para mapear os comandos disponíveis na CLI, permitindo que o Angel Manager identifique e execute comandos de geração para cada template.
+- ```/architecture```: This subdirectory stores templates representing the modular structure of the architecture. It should reflect the desired directory organization for the project. Each module **(such as components or views)** will have its own template.
 
-Por exemplo:
+- ```/commands```: Contains **TypeScript** files that configure template transformations. Each model in the architecture should have a corresponding file in ```commands``` to define code generation and transformation rules. These files also serve to map the CLI commands available, enabling Angel Manager to identify and execute generation commands for each template.
+
+For example:
+
 ```bash
 src/
 └── scaffolding/
-    ├── architecture/  # Armazena templates de arquitetura, como components, views, etc.
+    ├── architecture/  # Stores architecture templates like components, views, etc.
     │   ├── components/
+    │   │   └── index.liquid
     │   └── views/
     │       ├── admin/
+    │       │   └── index.liquid
     │       └── public/
-    │   └── ...    # Outros módulos da arquitetura...
-    └── commands/  # Define regras de geração e mapeia comandos para cada modelo
+    │           └── index.liquid
+    │   └── ...    # Other architecture modules...
+    └── commands/  # Defines generation rules and maps commands for each model
         ├── Components.ts
         ├── AdminViews.ts
         └── PublicViews.ts
 ```
 
-## Criando um novo módulo
-Ao criar um novo módulo, comece construindo o template e armazene-o no diretório correspondente dentro de scaffolding/architecture.
+**Note:** Each module template **must** be named `index.liquid`.
 
-Em seguida, crie um novo arquivo no diretório commands, correspondente ao módulo que está sendo modelado. Para isso, o Angel Manager fornece um comando para inicializar a estrutura base do arquivo ```.ts```, recebendo como argumento o nome do módulo:
+## Creating a New Module
+When creating a new module, start by building the template and storing it in the corresponding directory within scaffolding/architecture.
+
+Then, create a new file in the commands directory corresponding to the module being modeled. Angel Manager provides a command to initialize the basic structure of the ```.ts``` file, taking the module name as an argument:
 
 ```bash
 npx angel create:command <commandName>
 ```
 
-## Construindo um Template
+## Building a Template
+**Angel Manager** uses the **Liquid Engine** to process the templates created. For further details on building your templates, refer to the engine documentation at [Liquid Engine](https://shopify.github.io/liquid/)..
 
-O **Angel Manager** utiliza a **Liquid Engine** para processar os templates criados. Para entender melhor como construir seus templates, consulte a documentação da engine em [Liquid Engine](https://shopify.github.io/liquid/).
+As an example, let's build the template for the ```components``` module in a project that uses React.
 
-Como exemplo, vamos construir o template para o módulo `components` em um projeto que utiliza **React**.
-
-### Exemplo de Template
+## Template Example
+```bash
+src/
+└── scaffolding/
+    └── architecture/ 
+        └── components/
+            └── index.liquid
+```
 
 ```javascript
 import './{{ pascal.componentName }}.css';
 
 interface {{ pascal.componentName }}Props {
-  /* As propriedades do componente */
+  /* Component properties */
   requiredProp: string;
   optionalProp?: string;
 }
 
 function {{ pascal.componentName }}({
   requiredProp,
-  optionalProp = 'Valor Padrão',
+  optionalProp = 'Default Value',
 }: {{ pascal.componentName }}Props): JSX.Element {
   return (
     <div className="{{ kebab.componentName }}">
-      Seu HTML aqui: {requiredProp}, {optionalProp}
+      Your HTML here: {requiredProp}, {optionalProp}
     </div>
   );
 }
@@ -149,21 +164,27 @@ export default {{ pascal.componentName }};
 
 /**
  * @note
- * Não se esqueça de listar este novo componente.
- * Adicione o seguinte trecho em components/index.ts:
+ * Don’t forget to list this new component.
+ * Add the following snippet in components/index.ts:
  * export { default as {{ pascal.componentName }} } from './{{ pascal.componentName }}/{{ pascal.componentName }}';
  */
 ```
 
-**Importante!!!!:** Este é apenas um exemplo de template. Ele é totalmente customizável para se ajustar às suas necessidades. A engine de templates não depende de uma linguagem de saída específica. A extensão e o nome do arquivo gerado são definidos no arquivo TypeScript correspondente em commands.
+**Important!!!!:** This is just an example template. It is fully customizable to suit your needs. The template engine does not depend on a specific output language. The extension and file name of the generated file are defined in the corresponding TypeScript file in commands.
 
-## Construção do Design-Time Input
+## Design-Time Input Construction
+The **model configuration file**, defined within ```commands```, is called **design-time input**. During its construction, developers can customize code generation according to the project's needs.
 
-Ao arquivo de **configuração do modelo**, definido dentro de ```/commands``` chamamos **design-time input**. Durante a construção deste, os desenvolvedores podem personalizar a geração de código de acordo com as necessidades do projeto.
+The following example shows the implementation of a command that generates a new component:
 
-O exemplo a seguir mostra a implementação de um comando que gera um novo componente:
+```bash
+src/
+└── scaffolding/
+    └── commands/ 
+        └── Components.ts
+```
 
-```typescript
+```javascript
 import {
   BaseCommand,
   FileConfig,
@@ -174,38 +195,38 @@ import {
 
 export default class Components extends BaseCommand {
   /**
-   * O nome do comando, que será utilizado para executá-lo
+   * Command name to be used when executing it
    */
   public commandName = 'make:component';
 
   /**
-   * Descrição do comando
+   * Command description
    */
-  public description = 'Cria um novo componente';
+  public description = 'Creates a new component';
 
   /**
-   * Caminho do template Liquid, relativo a scaffolding/architecture
+   * Liquid template path, relative to scaffolding/architecture
    */
   public templatePath = 'components';
 
   /**
-   * Caminho de destino para o arquivo gerado, relativo a src
+   * Destination path for the generated file, relative to src
    */
   public destinationPath = 'components';
 
   public file: FileConfig = {
-    // Define nome do arquivo gerado
+    // Defines the generated file name
     name: { argName: 'componentName', case: 'camel' },
-    // A extensão do arquivo gerado
+    // The extension of the generated file
     extension: 'tsx',
-    // Se verdadeiro, o código será gerado dentro de um diretório nomeado conforme o arquivo
+    // If true, the code will be generated inside a directory named after the file
     subDir: true,
   };
 
   /**
    *
-   * @returns um array de argumentos representando os parâmetros
-   * que serão solicitados pela linha de comando e disponibilizados no template
+   * @returns an array of arguments representing the parameters
+   * that will be requested by the command line and made available in the template
    */
   public args(): Arg[] {
     return [{ name: 'componentName', type: 'string' }];
@@ -220,49 +241,50 @@ export default class Components extends BaseCommand {
     }
   }
 }
+
 ```
 
-### Tabela de Tipos
+### Type Table
 
-| Tipo           | Propriedade | Descrição                                                                                                                                                                                                |
-| -------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Arg**        | `name`      | O nome do argumento que será solicitado pela linha de comando. Esse valor é utilizado para referenciar o parâmetro no código.                                                                            |
-|                | `type`      | O tipo do argumento. Pode ser "number" ou "string", indicando o tipo de dado que será esperado do usuário.                                                                                               |
-| **FileConfig** | `name`      | Define o nome do arquivo gerado. Pode ser uma string estática ou um objeto que utiliza um dos argumentos solicitados pela CLI e o formato de case (camel, kebab, snake, pascal) desejado. Também pode incluir a opção `plural` para transformar o valor no plural. |
-|                | `extension` | Define a extensão do arquivo gerado (por exemplo, `.tsx`).                                                                                                                                               |
-|                | `subDir`    | Se verdadeiro, o código será gerado dentro de um diretório com o mesmo nome do arquivo gerado.                                                                                                           |
+| Type           | Property | Description                                                                                                                                                                                                                                                          |
+| -------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Arg**        | `name`      | The name of the argument that will be requested by the command line. This value is used to reference the parameter in the template.                                                                                                                                      |
+|                | `type`      | 	The argument type. Can be "number" or "string", indicating the data type expected from the user.                                                                                                                                                         |
+| **FileConfig** | `name`      | Defines the generated file name. Can be a `static string` or an `object` that uses one of the CLI-requested arguments and the desired case format (camel, kebab, snake, pascal). It can also include the plural option to make the value plural. |
+|                | `extension` | Defines the generated file extension ```(e.g., .tsx).```                                                                                                                                                                                                         |
+|                | `subDir`    | 	If true, the code will be generated inside a directory with the same name as the generated file.                                                                                                        |
 
-### Método `run`
+### `run` Method
 
-O método `run` é um método abstrato e assíncrono que executa a lógica do comando. Ele disponibiliza como argumento `args`, que são os parâmetros passados pelo usuário ao executar o comando. Dentro do método, o desenvolvedor tem a liberdade de definir a lógica de execução do comando da maneira que for necessária para o seu caso de uso.
+The `run` method is an abstract and asynchronous method that executes the command logic. It makes available the `args` argument, which contains the parameters passed by the user when executing the command. Inside the method, the developer has the freedom to define the command execution logic as needed.
 
-No exemplo fornecido, a principal responsabilidade do método `run` é chamar a função `renderTemplate` e passar a si mesmo (`this`) e os argumentos (`args`) como parâmetros. A função `renderTemplate`, disponibilizada pelo **Angel Manager** será responsável por processar o template Liquid, substituindo os placeholders pelas variáveis definidas nos argumentos, e gerar o código de saída. O método `run` também inclui um bloco `try-catch` para capturar e tratar erros que possam ocorrer durante o processo de execução.
-
-
-#### Método `renderTemplate`
-
-O método assíncrono `renderTemplate`, disponibilizado pelo **Angel Manager**, é responsável por processar o template através da engine, utilizando os argumentos recebidos e os atributos estáticos. Ele gera o código de saída com base no template Liquid e nas configurações definidas.
+In the provided example, the main responsibility of the run method is to call the `renderTemplate` function and pass itself (`this`) and the arguments (`args`) as parameters. The `renderTemplate` function, provided by **Angel Manager**, will process the Liquid template, replacing placeholders with the variables defined in the arguments, and generate the output code. The `run` method also includes a `try-catch` block to catch and handle errors that may occur during execution.
 
 
-| Argumento | Tipo           | Descrição                                                                                                                                                           |
-| --------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `command` | `BaseCommand`  | Instância do comando, utilizada para acessar os atributos estáticos do modelo e fornecer o contexto necessário para o processamento. Sendo passada dentro da classe através de ```this```                                |
-| `args`    | `RunnableArgs` | Objeto que contém os argumentos passados ao comando. Ele inclui os parâmetros necessários para gerar o código. |
+#### `renderTemplate` Method
 
-#### Método `includeRelated`
-
-O método síncrono `includeRelated`, disponibilizado pelo **Angel Manager**, permite a inclusão de arquivos vazios relacionados ao código gerado. Este método é útil quando é necessário criar arquivos complementares, como arquivos de estilo ou testes, no mesmo diretório do código gerado.
+The asynchronous `renderTemplate` method, provided by **Angel Manager**, processes the template through the engine using the received arguments and static attributes. It generates the output code based on the Liquid template and defined configurations.
 
 
-| Argumento | Tipo           | Descrição                                                                                                                                                                                                         |
-| --------- | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `command` | `BaseCommand`  | Instância do comando, utilizada para acessar os atributos estáticos do modelo e fornecer o contexto necessário para a inclusão dos arquivos relacionados.                                                         |
-| `args`    | `RunnableArgs` | Objeto contendo os argumentos passados ao comando, utilizado para configurar o comportamento da inclusão.                                                                                                         |
-| `files`   | `string[]`     | Array de strings que especifica as extensões dos arquivos relacionados a serem criados. Permite incluir, por exemplo, arquivos de estilo (`.css`) ou de testes (`.test.tsx`) no mesmo diretório do código gerado. |
+| Argument  | Type           | Description                                                                                                                                                          |
+| --------- | -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `command` | `BaseCommand`  | Instance of the command, used to access the static attributes of the model and provide the necessary context for processing. Passed within the class through `this`. |
+| `args`    | `RunnableArgs` | Object containing the arguments passed to the command. It includes the parameters required to generate the code.                                                     |
+
+
+#### `includeRelated` Method
+
+The synchronous `includeRelated` method, provided by **Angel Manager**, allows for the inclusion of empty files related to the generated code. This method is useful when there is a need to create complementary files, such as style or test files, in the same directory as the generated code.
+
+| Argument  | Type           | Description                                                                                                                                                                                                                 |
+| --------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `command` | `BaseCommand`  | Instance of the command, used to access the model's static attributes and provide the necessary context for including related files.                                                                                        |
+| `args`    | `RunnableArgs` | Object containing the arguments passed to the command, used to configure the inclusion behavior.                                                                                                                            |
+| `files`   | `string[]`     | Array of strings that specifies the extensions of related files to be created. This allows for the inclusion of, for example, style files (`.css`) or test files (`.test.tsx`) in the same directory as the generated code. |
 
 ## angel-managerrc.json
 
-Este é o arquivo de configuração global do Angel Manager. Ele é utilizado para definir valores iniciais (default) para a construção dos modelos.
+This is the global configuration file for Angel Manager. It is used to define default values for model construction.
 
 ```json
 {
@@ -277,11 +299,5 @@ Este é o arquivo de configuração global do Angel Manager. Ele é utilizado pa
 }
 ```
 
-## Contribuições
-Contribuições são bem-vindas! Sinta-se à vontade para abrir issues, enviar pull requests ou sugerir melhorias para a documentação. 
-
-
-
-
-
-
+## Contributions
+Contributions are welcome! Feel free to open issues, submit pull requests, or suggest improvements to the documentation.
