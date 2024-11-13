@@ -18,12 +18,12 @@ export default class {{ plural.pascal.commandName }} extends BaseCommand {
   public description = 'Makes a new {{ camel.commandName }}';
 
   /**
-   * Liquid template path
+   * Path to the Liquid template, relative to src/scaffolding/architecture
    */
   public templatePath = '{{ plural.kebab.commandName }}';
 
   /**
-   * Processed template destination path
+   * Destination path for the generated code, relative to src
    */
   public destinationPath = '{{ plural.kebab.commandName }}';
 
