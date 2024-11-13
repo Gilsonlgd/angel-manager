@@ -1,4 +1,4 @@
-import './{{ pascal.layoutName }}Layout.scoped.css';
+import './{{ pascal.layoutName }}.scoped.css';
 import { Outlet } from 'react-router-dom';
 
 /*
@@ -6,7 +6,7 @@ import { Outlet } from 'react-router-dom';
  * import Footer from "./components/Footer/Footer";
  */
 
-function {{ pascal.layoutName }}Layout(): JSX.Element {
+function {{ pascal.layoutName }}(): JSX.Element {
   return (
     <div {% raw %}style={{ height: '100%' }}{% endraw %}>
       {/* <NavBar /> */}
@@ -18,7 +18,7 @@ function {{ pascal.layoutName }}Layout(): JSX.Element {
   );
 }
 
-export default {{ pascal.layoutName }}Layout;
+export default {{ pascal.layoutName }};
 
 /**
  * @note
