@@ -226,12 +226,12 @@ export class AdminModel {
 
 A seguir, apresento um passo a passo para a construção do novo módulo `models` da arquitetura. Este processo inclui orientações subjetivas para ajudá-lo a criar o modelo. Para apoiá-lo, disponibilizei um exemplo de modelagem em [docs/user-testing/models-example], que inclui o template e o arquivo `.ts` de definição do comando.
 
-A fim de tornar a avaliação mais precisa e autêntica, peço que tente construir o modelo por conta própria, sem consultar o exemplo de imediato. No entanto, se encontrar dificuldades, sinta-se à vontade para consultar o material de apoio.
+A fim de tornar a avaliação mais precisa, peço que tente construir o modelo por conta própria, sem consultar o exemplo de imediato. No entanto, se encontrar dificuldades, sinta-se à vontade para consultar o material de apoio.
 
 1. **Criação do Template de Models**:
    1. Crie um novo diretório em `src/scaffolding` chamado `models`.
    2. Dentro do diretório `src/scaffolding/models`, crie um novo arquivo de template.
-   3. Caso tenha dúvidas sobre a sintaxe usada nos templates, consulte a documentação da template engine utilizada em [Liquid Engine](https://shopify.github.io/liquid/).
+   3. Caso tenha dúvidas sobre a sintaxe usada nos templates, consulte a documentação do [Angel Manager - Template](https://www.npmjs.com/package/angel-manager#building-a-template) ou da template engine utilizada [Liquid Engine](https://shopify.github.io/liquid/).
    4. Implemente o template com base no exemplo de código fornecido acima:
       - Copie o código do modelo `Admin` para o template.
       - Identifique quais partes são estáticas, ou seja, que se mantêm iguais em todas as instâncias de modelos.
@@ -240,7 +240,7 @@ A fim de tornar a avaliação mais precisa e autêntica, peço que tente constru
 
 2. **Criação de um Novo Comando para Processar o Modelo**:
    1. Execute o comando `npx angel create:command models` para gerar um novo arquivo de definição pré-estruturado.
-   2. Se necessário, consulte a documentação da ferramenta [Angel Manager](https://www.npmjs.com/package/angel-manager#design-time-input-construction) para entender os parâmetros e como configurar o comando adequadamente.
+   2. Se necessário, consulte a documentação da ferramenta [Angel Manager - Design-time input](https://www.npmjs.com/package/angel-manager#design-time-input-construction) para entender os parâmetros e como configurar o comando adequadamente.
 
 3. **Testagem e Criação de Novos Models**:
    1. Após completar a modelagem do template e do comando, utilize-os para criar novos models e testar o funcionamento

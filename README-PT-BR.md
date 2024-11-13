@@ -168,7 +168,11 @@ export default {{ pascal.componentName }};
  */
 ```
 
-**Importante!!!!:** Este é apenas um exemplo de template. Ele é totalmente customizável para se ajustar às suas necessidades. A engine de templates não depende de uma linguagem de saída específica. A extensão e o nome do arquivo gerado são definidos no arquivo TypeScript correspondente em commands.
+O **Angel Manager** oferece variações de case para cada argumento, incluindo: camelCase, kebab-case, snake_case e PascalCase. Além disso, cada uma dessas variações possui uma versão plural correspondente.
+
+Por exemplo, para acessar o argumento `componentName` em `PascalCase`, utilizamos `{{ pascal.componentName }}`. Para obter sua versão no **plural e em PascalCase**, usamos `{{ plural.pascal.componentName }}`.
+
+**Importante!!!!:** Este é apenas um exemplo de template. Ele é totalmente customizáel para se ajustar às suas necessidades. A engine de templates não depende de uma linguagem de saída específica. A extensão e o nome do arquivo gerado são definidos no arquivo TypeScript correspondente em commands.
 
 ## Construção do Design-Time Input
 

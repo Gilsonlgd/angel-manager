@@ -170,6 +170,12 @@ export default {{ pascal.componentName }};
  */
 ```
 
+The **Angel Manager** offers case variations for each argument, including: camelCase, kebab-case, snake_case, and PascalCase. Additionally, each of these variations has a corresponding plural version.
+
+For example, to access the `componentName` argument in `PascalCase`, we use `{{ pascal.componentName }}`. To get its plural version in **PascalCase**, we use `{{ plural.pascal.componentName }}`.
+
+
+
 **Important!!!!:** This is just an example template. It is fully customizable to suit your needs. The template engine does not depend on a specific output language. The extension and file name of the generated file are defined in the corresponding TypeScript file in commands.
 
 ## Design-Time Input Construction
