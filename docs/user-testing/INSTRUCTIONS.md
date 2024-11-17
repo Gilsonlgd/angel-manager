@@ -84,11 +84,11 @@ Windows:
 
 ### 2. Criar Layouts de Usuário
 - O projeto inclui 2 tipos de acesso: administradores (admin) e trabalhadores (worker).
-- Execute o comandos a seguir para criar layouts base de cada um:
+- Execute os comandos a seguir para criar os layouts base de cada um:
 
 ```bash
-    npx angel make:layout adminLayout
-    npx angel make:layout workerLayout
+   npx angel make:layout adminLayout
+   npx angel make:layout workerLayout
 ```
 - **Importante:** No final dos arquivos gerados, haverá instruções marcadas com `@important`. Siga essas instruções para configurar corretamente o projeto.
 
@@ -106,29 +106,18 @@ Windows:
    }
 ```
 
-### 4. Criar Componentes Básicos
- - Para criar um novo componente de nome **BaseButton**, execute o comando:
-
-```bash
-    npx angel make:component baseButton
-```
-
-- Os novos arquivos foram gerados em `src/components`.
-- Repita este comando para outros dois novos componentes: `modal`, `BaseInput`.
-- **Importante:** No final dos arquivos gerados, haverá instruções marcadas com `@important`. Siga essas instruções para configurar corretamente o projeto.
-
-### 5. Inicializar o Sistema de Rotas
+### 4. Inicializar o Sistema de Rotas
 - Para cada nível de acesso, crie um arquivo de rotas:
    
 ```bash
-    npx angel make:router admin
-    npx angel make:router worker
+   npx angel make:router admin
+   npx angel make:router worker
 ```
    
 - Os novos arquivos foram gerados em `src/routes`.
 - **Importante:** No final dos arquivos gerados, haverá instruções marcadas com `@important`. Siga essas instruções para configurar corretamente o projeto.
 
-### 6. Criar novas views
+### 5. Criar novas views
 - Crie views (páginas) para cada tipo de usuário:
 
 ```bash
@@ -139,7 +128,7 @@ Windows:
 - Dashboard é criada em `src/views/admin` e Tasks em `src/views/worker`.
 - **Importante:** No final dos arquivos gerados, haverá instruções marcadas com `@important`. Siga essas instruções para configurar corretamente o projeto.
 
-### 7. Iniciar a Aplicação
+### 6. Iniciar a Aplicação
 - Se todos os passos foram seguidos corretamente, inicialize a aplicação:
 
 ```bash
