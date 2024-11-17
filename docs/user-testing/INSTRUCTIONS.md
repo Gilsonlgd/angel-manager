@@ -115,7 +115,6 @@ Windows:
 ```
    
 - Os novos arquivos foram gerados em `src/routes`.
-- **Importante:** No final dos arquivos gerados, haverá instruções marcadas com `@important`. Siga essas instruções para configurar corretamente o projeto.
 
 ### 5. Criar novas views
 - Crie views (páginas) para cada tipo de usuário:
