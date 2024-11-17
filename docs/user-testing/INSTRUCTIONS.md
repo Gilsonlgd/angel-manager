@@ -1,9 +1,9 @@
 # Passo a Passo de Testes para o Angel Manager
 Antes de começar os testes, assista o vídeo disponibilizado de introdução ao Angel Manager.
 
-Ele é **rapidinho**, em **menos de três minutos** você entenderá um pouco melhor a motivação e o objetivo da ferramenta.
+Ele é **rapidinho**, em **menos de dois minutos** você entenderá um pouco melhor a motivação e o objetivo da ferramenta.
 
-[🎥 Vídeo curtinho de introdução 🎥]()
+[🎥 Vídeo curtinho de introdução 🎥](https://youtu.be/Qcd6U5ERbHs)
 
 Assistido? Vamos seguir em frente então!
 
@@ -34,7 +34,7 @@ Esse passo pode demorar um pouquinho, então pegue um cafézinho ☕ enquanto is
 5. Por fim, antes de prosseguir, abra o **VSCode** ou um editor de código de **sua preferência** na pasta do projeto para visualizar e editar os arquivos que forem criados.
 
 ### **Passo 2**: Instalando o Angel Manager
-1. Para instalar o Angel Manager em seu projeto, execute:
+1. Para instalar o Angel Manager em seu novo projeto, execute:
 
 ```bash
    yarn add -D angel-manager
@@ -44,7 +44,7 @@ Esse passo pode demorar um pouquinho, então pegue um cafézinho ☕ enquanto is
 
 ### **Passo 3**: Importando um Modelo de Arquitetura
 1. Em [Exemplos de Arquiteturas](https://github.com/Gilsonlgd/angel-manager/tree/main/examples), disponibilizamos alguns modelos de arquitetura pré-construídos.
-2. Para este exemplo, utilizaremos o modelo `MVC Architecture`.
+2. Para este exemplo, utilizaremos o modelo `MVC Architecture` para React.
 3. Para importar o modelo citado diretamente em seu projeto, execute:
 
 Linux:
@@ -83,7 +83,7 @@ Windows:
 - Isso **inicializará os principais diretórios da arquitetura**.
 
 ### 2. Criar Layouts de Usuário
-- O projeto inclui 2 tipos de acesso: administradores (admin) e trabalhadores (worker).
+- O projeto modelo 2 tipos de acesso: administradores (admin) e trabalhadores (worker).
 - Execute os comandos a seguir para criar os layouts base de cada um:
 
 ```bash
@@ -148,7 +148,7 @@ Windows:
 - Veja o **vídeo abaixo** para entender melhor como funciona o processo de modelagem e definição de comandos.
 - (Esse vídeo também é curto, prometo 😄)
 
-[🎥 Vídeo curtinho sobre modelagem 🎥]()
+[🎥 Vídeo curtinho sobre modelagem 🎥](https://youtu.be/SBG4kEYg8ow)
 
 # Formulário de Avaliação:
 Por fim, após testar e utilizar a ferramenta, por favor, preencha o formulário de avaliação abaixo:
