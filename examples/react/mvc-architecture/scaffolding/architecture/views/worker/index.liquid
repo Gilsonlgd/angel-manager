@@ -2,11 +2,16 @@ import './{{ pascal.viewName }}.scoped.css';
 
 function {{ pascal.viewName }}(): JSX.Element {
   return (
-    <div className="container-fluid p-4 h-100">
+    <div className="container-fluid p-4">
       <div className="d-flex row h-100 align-items-center">
-        <h1 className="text-muted fw-bold text-center">
-          Conteúdo de {{ kebab.viewName }}
-        </h1>
+        <span>
+          <h1 className="text-muted fw-bold text-center">
+            Página de trabalhador
+          </h1>
+          <h1 className="text-muted fw-bold text-center">
+            Conteúdo de {{ kebab.viewName }}
+          </h1>
+        </span>
       </div>
     </div>
   );

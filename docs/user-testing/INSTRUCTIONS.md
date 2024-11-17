@@ -31,6 +31,7 @@ Esse passo pode demorar um pouquinho, então pegue um cafézinho ☕ enquanto is
 ```bash
    yarn install
 ```
+5. Por fim, antes de prosseguir, abra o **VSCode** ou um editor de código de **sua preferência** na pasta do projeto para visualizar e editar os arquivos que forem criados.
 
 ### **Passo 2**: Instalando o Angel Manager
 1. Para instalar o Angel Manager em seu projeto, execute:
@@ -144,8 +145,10 @@ Windows:
 ```bash
    yarn start
 ```
-- No terminal aparecerá um link. Abra-o.
-- Acesse as views criadas nas rotas configuradas para verificar sua funcionalidade.
+
+- Se tudo ocorreu bem, você deve conseguir acessar as views criadas.
+- Para acessar a dashboard do admin, clique aqui: http://localhost:5173/admin/dashboard
+- Para acessar a página tasks do worker, clique aqui: http://localhost:5173/worker/tasks
 - **🎉 Finalizamos os testes!! 🎉**
 
 ---
