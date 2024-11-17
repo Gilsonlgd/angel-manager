@@ -1,17 +1,21 @@
-import { Navigate } from 'react-router-dom';
-
-/* Exemplo de importação de uma view chamada Home */
+/**
+ * Exemplo de importação da view chamada "Home".
+ * @note 
+ * Este é apenas um exemplo ilustrativo e deve ser substituido
+ * pelas importações reais.
+ */
 import Home from '@views/{{ camel.routerName }}/Home/Home';
 
+
 const {{ camel.routerName }}Routes = [
-  { path: '', element: <Navigate to="{{ camel.routerName }}/home" /> },
+  /* Rota criada: {{ kebab.routerName }}/home */
   { path: 'home', element: <Home /> },
 ];
 
 export default {{ camel.routerName }}Routes;
 
 /**
- * @note
+ * @important
  * Não esqueça de importar {{ camel.routerName }}Routes em src/router.tsx
  * Após importar, inclua o objeto abaixo na listagem de rotas:
  * {

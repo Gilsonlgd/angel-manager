@@ -1,10 +1,8 @@
 import './{{ pascal.viewName }}.scoped.css';
 
-/* import { BaseButton } from '@/components' */
-
 function {{ pascal.viewName }}(): JSX.Element {
   return (
-    <div className="container-fluid p-2 px-4 h-100">
+    <div className="container-fluid p-4 h-100">
       <div className="d-flex row h-100 align-items-center">
         <h1 className="text-muted fw-bold text-center">
           Conteúdo de {{ kebab.viewName }}
@@ -15,3 +13,12 @@ function {{ pascal.viewName }}(): JSX.Element {
 }
 
 export default {{ pascal.viewName }};
+
+/**
+ * @important
+ * Não esqueça de importar {{ pascal.viewName }} em src/routes/worker.tsx:
+ * import {{ pascal.viewName }} from '@views/worker/{{ pascal.viewName }}/{{ pascal.viewName }}'
+ *
+ * Após importar, inclua o objeto abaixo na listagem de rotas:
+ * { path: '{{ kebab.viewName }}', element: <{{ pascal.viewName }} /> }
+ */
