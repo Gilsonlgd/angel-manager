@@ -18,6 +18,7 @@ export type FileConfig = {
         argName: string;
         case: "camel" | "kebab" | "snake" | "pascal";
         plural?: boolean;
+        suffix?: string;
       };
   extension?: string;
   subDir?: boolean;

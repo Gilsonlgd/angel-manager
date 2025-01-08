@@ -22,11 +22,13 @@ const renderTemplate = async (
       const caseType = command.file.name.case;
       const argName = command.file.name.argName;
       const isPlural = command.file.name.plural;
+      const suffix = command.file.name.suffix;
 
       if (argName in args.arguments[caseType]) {
         fileName = isPlural
           ? args.arguments["plural"][caseType][argName]
           : args.arguments[caseType][argName];
+        if (suffix) fileName = fileName + suffix;
       } else {
         console.warn(
           `Warning: The argument "${argName}" does not exist in the defined arguments.`
